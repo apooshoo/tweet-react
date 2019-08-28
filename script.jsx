@@ -20,6 +20,43 @@ class UserBanner extends React.Component{
     )};
 };
 
+class Details extends React.Component{
+    render(){
+        let date = this.props.user.created_at.substring(4,7) + " " + this.props.user.created_at.slice(-4)
+        return(
+            <div>
+                <p>{this.props.user.name}</p>
+                <p>@{this.props.user.screen_name}</p>
+                <span>ProfileLinkHere.com</span> <span>Joined {date}</span>
+            </div>
+    )};
+};
+
+class UserFollowing extends React.Component{
+    render(){
+        return(
+            <span>FollowingCountHere</span>
+    )};
+};
+
+class FollowersCount extends React.Component{
+    render(){
+        return(
+            <span>{this.props.user.followers_count} Followers</span>
+    )};
+};
+
+class UserDetails extends React.Component{
+    render(){
+        let user = this.props.user
+        return(
+            <div>
+                <Details user={user}/>
+                <UserFollowing user={user}/> <FollowersCount user={user}/>
+            </div>
+    )};
+};
+
 
 
 class ProfilePic extends React.Component{
@@ -74,6 +111,7 @@ class TweetList extends React.Component{
             <div>
                 <UserHeader user={tweets[0].user}/>
                 <UserBanner user={tweets[0].user}/>
+                <UserDetails user={tweets[0].user}/>
                 <div>{tweet}</div>
             </div>
     )};
